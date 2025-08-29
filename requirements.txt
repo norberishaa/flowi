@@ -1,3 +1,5 @@
+# these are the requirments for running the web-app
+
 dj-config-url
 asgiref==3.9.1
 certifi==2025.8.3
