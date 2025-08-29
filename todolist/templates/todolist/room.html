@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{{ title|default:"flowi." }}{% endblock %}</title>
+    <link rel="icon" href="{% static 'todolist/images/f.svg' %}">
+    <link rel="stylesheet" href="{% static 'todolist/css/todolist.css' %}?v=2">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="header">
+        <h1>{{ room.name }}</h1>
+    </div>
+
+    <div class="categories" data-room-id="{{ room.id }}">
+        {% for category in categories %}
+            <div class="category" data-category-id="{{ category.id }}">
+                <h3 class="category-name">{{ category.name }}</h3>
+                <div class="task-list" data-category-id="{{ category.id }}">
+                    {% for task in category.items.all %}
+                        <div class="task-container" data-task-id="{{ task.id }}">
+                            <div class="task" contenteditable="true"> {{ task.title }}</div>
+                            <button class="done" id="checkBtn"><img src="{% static 'todolist/images/bin_white.png' %}">
+                            </button>
+
+                        </div>
+                    {% endfor %}
+                    <button class="add-task">+</button>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="side-nav">
+        <button class="add-category-button" data-tooltip="Add a new category">
+            <img alt="Add category" src="{% static 'todolist/images/add_category.png' %}">
+        </button>
+
+        <button class="remove-room-button" data-tooltip="Remove an existing category">
+            <img alt="Remove category" src="{% static 'todolist/images/remove_category.png' %}">
+        </button>
+
+        <button class="leave-room-button" data-tooltip="Leave this room" data-url="{% url 'leave_room' %}">
+            <img alt="Leave room" src="{% static 'todolist/images/exit_room.png' %}">
+        </button>
+    </div>
+
+    <div id="add-category-modal" class="add-modal hidden">
+        <div class="add-modal-content">
+
+            <div class="head-container">
+                <h3>Add a new category</h3>
+                <button id="close-add-modal">&#x00d7;</button>
+            </div>
+            <input type="text" id="new-category-name" placeholder="Category name">
+            <button class="add-category" id="confirm-add-category">Add</button>
+        </div>
+    </div>
+
+
+    <div id="remove-category-modal" class="remove-modal hidden">
+        <div class="remove-modal-content">
+            <div class="head-container">
+                <h3>Remove a category</h3>
+                <button id="close-remove-modal">&#x00d7;</button>
+            </div>
+
+            <div class="remove-category-options">
+                <label for="category-dropdown">Choose a category:</label>
+                <select id="category-dropdown" class="category-dropdown">
+                    {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% empty %}
+                        <option disabled>No categories available</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button class="remove-category" id="confirm-remove-category">Remove Category</button>
+        </div>
+    </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+<script src="{% static 'todolist/js/room.js' %}"></script>
+
+
+</body>
+</html>

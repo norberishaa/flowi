@@ -1,0 +1,55 @@
+{% extends 'todolist/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="home-landing">
+        <div class="home-landing-header">
+            <div class="big-logo">
+                <p class="big-logo-text"><span>f</span>lowi.</p>
+            </div>
+            <div class="home-slogan">
+                <p class="home-slogan-text">clear tasks, calm mind</p>
+            </div>
+        </div>
+        <div class="home-landing-search">
+            <form action="{% url 'room' %}" method="POST" class="search-form">
+                {% csrf_token %}
+
+                <div class="input-wrapper">
+                    <div class="name-search-container">
+                        <input autocomplete="off" spellcheck="false" type="text" name="room" class="search-input name-search" id="nameInput" maxlength="32" placeholder="Enter room name">
+                    </div>
+
+                    <div class="private-key-search-container">
+                        <input autocomplete="off" spellcheck="false" type="text" name="key" placeholder="Enter room key" class="search-input private-key-search" id="privateKeyInput" maxlength="32"/>
+                        <button type="submit" class="search-button" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </div>
+
+                <div class="turnstile-wrapper">
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAABpFv99RGgYXOj-D" data-callback="enableSubmit" data-appearance="interaction-only"></div>
+                </div>
+            </form>
+        </div>
+
+        <div class="divider landing-bottom">
+            <img src="{% static 'todolist/images/wavesOpacity.svg' %}" alt="">
+        </div>
+    </div>
+
+    <div class="home-usage">
+        <div class="home-usage-content">
+            <div class="home-usage-content-text">
+                <h1>Are you looking for <span class="autotype"></span>?</h1>
+                <p class="home-usage-content-p">Welcome to your new To-Do playground! <br> Create your own private room with a secret key—just like a digital clubhouse—where only you (and whoever you share the key with) can peek at your tasks. Organize, conquer, and share your to-do lists securely and effortlessly. Because getting things done should be fun and totally under your control!</p>
+            </div>
+
+
+            <img class="home-usage-tasks" src="{% static 'todolist/images/placeholder.png' %}" alt="flowi." >
+        </div>
+
+        <div class="divider usage-bottom">
+            <img src="{% static 'todolist/images/wavesOpacity.svg' %}" alt="">
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'todolist/base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="create-room">
+        <div class="create-room-text">
+            <h1>Welcome to the create room page.</h1>
+            <p>1. Enter the name for your room</p>
+            <p>2. Copy the private key for your room. This private key should be shared only amongst trusted people and <b>stored somewhere safe.</b></p>
+        </div>
+
+        <form class="create-room-form" action="{% url 'create' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="id_name">Enter the Name for your Room:</label>
+            {{ form.name }}
+
+            <label for="id_private_key">Private Key:</label>
+            {{ form.private_key }}
+            {{ form.errors }}
+
+            <div class="create-room-button">
+                 <button type="submit">Create Room</button>
+            </div>
+
+            <div class="turnstile-wrapper">
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAABpFv99RGgYXOj-D" data-callback="enableSubmit" data-appearance="interaction-only"></div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ title|default:"flowi." }}{% endblock %}</title>
+    <link rel="icon" href="{% static 'todolist/images/f.svg' %}">
+    <link rel="stylesheet" href="{% static 'todolist/css/landing.css' %}?v=2">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="base-nav">
+        <a class="logo" href="{% url 'home' %}"><span>f</span>lowi.</a>
+
+        <div class="base-nav-register">
+            <button class="register-button" onclick="window.location.href='{% url 'create' %}'">Start a new room</button>
+        </div>
+    </nav>
+
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+
+    {% block content %}
+    {% endblock %}
+
+    <div class="bottom-links">
+        <a class="github" href="https://github.com/norberishaa" target="_blank"><i class="fa-brands fa-github"></i></a>
+        <a class="linkedin" href="https://www.linkedin.com/in/norberisha/ " target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a class="instagram" href="https://www.instagram.com/norberisha/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+    </div>
+
+    <script src="{% static 'todolist/js/script.js' %}"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</body>
+</html>

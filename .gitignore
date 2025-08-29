@@ -1,0 +1,20 @@
+# Python cache files
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Virtual environment
+.venv/
+
+# Environment variables file -  this is done to prevent overwriting between differenct machines
+.env
+
+# Collected static files (production)
+staticfiles/
+
+# Logs
+*.log
+
+.vscode/
+.idea/

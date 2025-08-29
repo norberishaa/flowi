@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    cursor: crosshair;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #222;
+    background-image: radial-gradient(rgba(255, 204, 0, 0.3) 2px, transparent 1px);
+    background-size: 30px 30px;
+}
+
+.header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.header h1{
+    color: #ffcc00;
+    font-family: 'Poppins', 'sans-serif';
+    text-transform: uppercase;
+    filter: drop-shadow(0px 0px 20px black) drop-shadow(0px 0px 10px black);
+}
+
+.categories {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 20px;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    padding: 20px 0;
+    margin: 0 auto;
+    max-width: 1400px;
+}
+
+.category {
+    background: #141414;
+    border-radius: 12px;
+    color: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    width: 650px;
+    height: fit-content;
+}
+
+.category .category-name {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    text-align: center;
+    width: 100%;
+}
+
+.task-list {
+    flex-grow: 1;
+    padding: 10px;
+    background: #333;
+    border-radius: 12px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.task-list .task-container{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.task-list .task-container .task{
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-size: 1.1rem;
+    background: #141414;
+    border: none;
+    border-radius: 4px;
+    transition: .2s;
+    cursor: text;
+    width: 95%;
+    min-height: 40px;
+    height: auto;
+    text-align: left;
+    align-items: center;
+    padding: 0 10px;
+    white-space: normal;   /* allows text to wrap */
+    word-wrap: break-word; /* breaks long words if needed */
+    overflow-wrap: break-word;
+}
+
+.task-list .task-container .task:hover{
+    background: #222222;
+}
+
+.task-list .task-container .task:focus{
+    outline: none;
+    border: none;
+}
+
+.task-list .task-container .done{
+    border: none;
+    cursor: pointer;
+    width: 5%;
+    background: none;
+}
+
+.task-list .task-container .done img{
+    width: 100%;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.task-list .add-task{
+    background-color: #ffcc00;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.side-nav{
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #141414;
+    border-radius: 25px 25px 0 0;
+    width: 15%;
+    height: 50px;
+}
+
+.side-nav button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    cursor: pointer;
+    transition: .3s;
+    border-radius: 25px 25px 0 0;
+    background-color: transparent;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.side-nav button::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 110%;                /* float above button */
+    background: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    font-size: 0.9rem;
+    font-family: 'Poppins', sans-serif;
+    z-index: 10000;
+}
+
+.side-nav button:hover::after {
+    opacity: 1;
+    transform: translateY(-5px);
+}
+
+
+.side-nav button:hover{
+    background-color: #ffcc00;
+}
+
+.side-nav button img {
+    width: 100%;
+    height: 75%;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.add-modal, .remove-modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.add-modal.hidden, .remove-modal.hidden{
+    display: none;
+}
+
+.add-modal .add-modal-content, .remove-modal .remove-modal-content {
+    background: #141414;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    width: 25%;
+    height: 20%;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.add-modal-content .head-container, .remove-modal-content .head-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.add-modal-content .head-container button, .remove-modal-content .head-container button{
+    background: lightcoral;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    height: min-content;
+    position: absolute;
+    right: 0;
+}
+
+.add-modal-content input {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 1px;
+}
+
+.add-modal-content input:focus{
+    border: none;
+    outline: none;
+}
+
+.add-modal-content .add-category, .remove-modal-content .remove-category{
+    background-color: #ffcc00;
+    cursor: pointer;
+    border: none;
+    width: 35%;
+    height: 15%;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.remove-modal .remove-modal-content .remove-category-options{
+    font-family: 'Poppins', sans-serif;
+    height: 20%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.remove-modal .remove-modal-content .remove-category-options .category-dropdown{
+    font-family: 'Poppins', sans-serif;
+    border: none;
+    border-radius: 5px;
+    background: #333333;
+    height: 30px;
+    color: white;
+    cursor: pointer;
+    width: 50%;
+}
+
+.remove-modal .remove-modal-content .remove-category-options .category-dropdown:focus{
+    border: none;
+    outline: none;
+}
