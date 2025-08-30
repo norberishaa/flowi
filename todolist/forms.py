@@ -9,7 +9,7 @@ class CreateRoom(forms.ModelForm):
             'name': forms.TextInput(attrs={'autocomplete': 'off', 'spellcheck': 'false', 'placeholder': 'Enter a '
                                                                                                         'unique Room '
                                                                                                         'Name'}),
-            'private_key': forms.TextInput(attrs={'readonly': 'readonly'}),
+            'private_key': forms.TextInput(attrs={'readonly': 'readonly', 'class': 'selectable-input'})
         }
 
     def clean_name(self):

@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+html, body{
+    touch-action: manipulation;
+}
+
 body, * {
     cursor: none;
     user-select: none;
@@ -135,6 +139,7 @@ body {
     padding: 10px 20px;
     gap: 25px;
     border-radius: 35px;
+    z-index: 99999;
 }
 
 .bottom-links a {
@@ -369,6 +374,13 @@ body {
 
 /* -------CREATE ROOM PAGE------- */
 
+.selectable-input {
+    -webkit-user-select: text; /* for iOS */
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
 .create-room {
     background-color: black;
     height: calc(100vh - 80px);
@@ -400,9 +412,6 @@ body {
     display: flex;
     flex-direction: column;
     width: 25%;
-}
-
-.create-room .create-room-form {
     color: white;
     font-family: 'Poppins', sans-serif;
 }
@@ -489,6 +498,27 @@ body {
 
 .create-room .create-room-form .create-room-button button:hover {
     background-color: #ffcc00;
+}
+
+.create-room .copy-modal{
+    display: flex;
+    position: absolute;
+    z-index: 9999;
+    background: #1b1b1b;
+    width: fit-content;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+    font-family: Poppins, sans-serif;
+    color: #ffcc00;
+    border-radius: 15px;
+    padding: 15px;
+    bottom: 0;
+    left: 0;
+}
+
+.create-room .hidden{
+    display: none;
 }
 
 @media (max-width: 767px) {
@@ -601,6 +631,12 @@ body {
         font-size: 10px;
     }
 
+    .create-room .copy-modal{
+        padding: 10px;
+    }
+    .create-room .copy-modal span{
+        font-size: 10px;
+    }
 
     .cf-turnstile {
         width: 100%; /* match the form width */
@@ -609,5 +645,7 @@ body {
         transform-origin: top left;
         margin: 0 auto;
     }
+
+
 
 }

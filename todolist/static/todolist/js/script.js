@@ -108,3 +108,25 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const privateKeyInput = document.getElementById('id_private_key');
+
+    privateKeyInput.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(privateKeyInput.value); // copy the text
+
+            const copy_modal = document.getElementById("copy-modal");
+
+            copy_modal.classList.remove("hidden");
+
+            setTimeout(() => {
+                copy_modal.classList.add('hidden');
+            }, 5000);
+
+        } catch (err) {
+            console.error('Failed to copy: ', err);
+            alert('Copy failed. Try manually.');
+        }
+    });
+});
