@@ -4,6 +4,8 @@ Flowi is a web app for managing tasks with a simple, room-based model. Users cre
 
 This is a side project intended to help and inspire Django developers and tech enthusiasts.
 
+A live version of the website can be found here: [flowi](https://www.flowitodo.live/). *Note that this is being hosted on Render with a free subscripiton, which means the web-app may take 1-2 minutes to start-up! Please be patient.*
+
 ---
 
 ## Features
