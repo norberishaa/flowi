@@ -71,10 +71,16 @@ pip install -r requirements.txt
 Create a `.env` file (or set environment variables via your process manager) with at least:
 
 ```env
+# Django secret key
 SECRET_KEY=
-DEBUG=True
-CLOUDFLARE_SECRET_KEY
 
+# Turn on debug mode (never True in production!)
+DEBUG=True
+
+# Cloudflare API key
+CLOUDFLARE_SECRET_KEY=
+
+# PostgreSQL database settings
 DB_NAME=
 DB_USER=
 DB_PASSWORD=
